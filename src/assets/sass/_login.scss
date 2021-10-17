@@ -1,0 +1,24 @@
+.welcome-ui {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #00695C;
+    color: white;
+}
+
+.login-ui {
+    @extend .welcome-ui;
+    background: #ffffff;
+    form {
+        h2, h3 {
+            color: #00695C;
+            text-align: center;
+            margin: 10px;
+        }
+        min-width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
