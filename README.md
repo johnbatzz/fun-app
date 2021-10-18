@@ -7,17 +7,20 @@ These instructions will get you a copy of the project up and running on your loc
 Downloadn and install Node in your local machine in order to run this project.
 Download VSCode for your code editor.
 
-### Download and install dependencies
+## Download and install dependencies
 Frontend - Run the `npm install` to get all the dependencies.
-Server Side - 
+Server Side
     * Go to `server folder` and
     * Run `npm install` to get the dependencies
 
-### Local Deployment
+## Local Deployment
     * Frontend - Run `npm run serve`
     * Server-side - Run `npm run devStart`
 
-### Build With
+## Run Lint
+    * Run `npm run lint`
+
+## Build With
 VueJS 2 - the main framework
 Vuetify - VueJS UI library
 Vuex - State Management library

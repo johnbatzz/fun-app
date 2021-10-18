@@ -1,7 +1,7 @@
 <template>
   <v-row>
-      <AppBar></AppBar>
-      <Content></Content>
+    <AppBar />
+    <Content />
   </v-row>
 </template>
 
