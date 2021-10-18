@@ -25,6 +25,9 @@ const getters = {
   },
   isAuthenticated(state) {
     return state.isAuthenticated;
+  }, 
+  errors(state) {
+      return state.errors;
   }
 };
 
@@ -38,6 +41,7 @@ const actions = {
         })
         .catch(({ response }) => {
           context.commit(SET_ERROR, response.data.errors);
+          resolve(false)
         });
     });
   },

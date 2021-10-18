@@ -14,7 +14,7 @@
             xs="12"
             class="login-ui"
         >
-            <form >
+            <form>
                 <h2 class="d-xs-flex d-sm-flex d-md-none mb-10">Welcome To Anime Fun App</h2>
                 <h3>Please Login</h3>
                 <br/>
@@ -23,9 +23,11 @@
                         v-model="username"
                         label="Username"
                         outlined
-                        :rules="[rules.required]"
+                        :rules="[isValid(false)]"
                         prepend-inner-icon="mdi-account"
                         full-width
+                        @keyup.enter.native="login"
+                        :error-messages="''"
                     >
                     </v-text-field>
                 </v-col>
@@ -34,10 +36,11 @@
                         v-model="password"
                         label="Password"
                         outlined
-                        :rules="[rules.required]"
+                        :rules="[isValid(true)]"
                         :type="show ? 'text' : 'password'"
                         :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                         @click:append="show = !show"
+                        @keyup.enter.native="login"
                     >
                     </v-text-field>
                 </v-col>
@@ -58,6 +61,7 @@
     </v-row>
 </template>
 <script>
+import { mapGetters } from "vuex"
 import { LOGIN, LOGOUT } from '@/store/auth'
 export default {
     name: 'Login',
@@ -67,29 +71,38 @@ export default {
             show: false,
             username: '',
             password: '',
-            rules: {
-                required: v => !!v || 'Required.'
-            }
+            isInvalid: false,
+            logo: '../../assets/logo.png',
         }
     },
 
     computed: {
+        ...mapGetters(['isAuthenticated']),
+
         isDisabled() {
             return this.username === '' || this.password === ''
         }
     },
 
     methods: {
-        login() {
+        async login() {
             let params = {
                 username: this.username,
                 password: this.password
             }
             // purge all the tokens before login
             this.$store.dispatch(LOGOUT);
-            this.$store.dispatch(LOGIN, params)
-             .then(() => this.$router.push({ name: "home" }));
-        }
+            await this.$store.dispatch(LOGIN, params);
+             if (this.isAuthenticated) {
+                 this.$router.push({ name: "home" })
+             } else {
+                 this.isInvalid = true;
+             }
+        },
+
+        isValid(hasMsg) {
+			return this.isInvalid ?  hasMsg ? "Incorrect username and password." : " " : ""
+		},
     }
 }
 </script>
