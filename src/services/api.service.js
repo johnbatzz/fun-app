@@ -30,11 +30,20 @@ const ApiService = {
    * @returns {*}
    */
   get(resource, slug = "") {
-    console.log("resource: " + resource)
     return Vue.axios.get(`${resource}/${slug}`).catch(error => {
       // console.log(error);
       throw new Error(`[KT] ApiService ${error}`);
     });
+  },
+
+  /**
+   * Set the POST HTTP request
+   * @param resource
+   * @param params
+   * @returns {*}
+   */
+  post(resource, params) {
+    return Vue.axios.post(`${resource}`, params);
   },
 
   /**
@@ -59,6 +68,7 @@ const ApiService = {
     return Vue.axios.patch(`${resource}/${slug}`, params);
   },
 
+
   /**
    * Send the PUT HTTP request
    * @param resource
@@ -80,6 +90,23 @@ const ApiService = {
       throw new Error(`[RWV] ApiService ${error}`);
     });
   },
+  /**
+   * Send the MULTIPLE HTTP request
+   * @param resources
+   * @returns [*]
+   */
+  multipleReques(resources) {
+    return Vue.axios
+      .all(resources)
+      .then(
+        axios.spread((...responses) => {
+          return responses;
+        })
+      )
+      .catch(errors => {
+        throw new Error(`[RWV] ApiService ${errors}`);
+      });
+  }
 };
 
 export default ApiService;

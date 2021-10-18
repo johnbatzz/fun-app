@@ -3,7 +3,12 @@
       <v-row
         class="home"
       >
-        <v-col md="12" class="text-center">
+        <v-col 
+          lg="12"
+          md="12"
+          sm="12"
+          xs="12" 
+          class="text-center">
           <v-pagination
             v-model="page"
             :length="totalPage"
@@ -38,7 +43,12 @@
             </v-card>
           </v-list-item>
         </div>
-        <v-col md="12" class="text-center">
+        <v-col 
+          lg="12"
+          md="12"
+          sm="12"
+          xs="12" 
+          class="text-center">
           <v-pagination
             v-model="page"
             :length="totalPage"
