@@ -4,6 +4,7 @@
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes only.
 
 ## Prerequisites
+Download or copy the project into your local machine.
 Downloadn and install Node in your local machine in order to run this project.
 Download VSCode for your code editor.
 
