@@ -2,6 +2,8 @@
     <v-container>
         <v-app-bar
             app
+            hide-on-scroll
+            color="#00695C"
         >
             <v-spacer></v-spacer>
             <v-menu offset-y>
@@ -10,12 +12,15 @@
                         text
                         v-bind="attrs"
                         v-on="on"
+                        class="text--white"
                     >
                         <span>Hi {{name}} </span>
                         <v-icon>mdi-chevron-down</v-icon>
                     </v-btn>
                 </template>
-                <v-list>
+                <v-list
+                    dense
+                >
                     <v-list-item
                         v-for="(item, index) in items"
                         :key="index"
